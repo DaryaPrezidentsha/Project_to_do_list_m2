@@ -1,0 +1,131 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+.list {
+    margin: 300px;
+    height: 270px;
+    width: 336px;
+    background-color: white;
+    border-radius: 10px;
+    border: 1px solid #c4c4c4;
+    box-sizing: border-box;
+}
+
+.yellowInsert {
+    width: 334px;
+    height: 28px;
+    background-color: #FFDC40;
+    border-radius: 10px 10px 0px 0px;
+}
+
+.parentForText {
+    height: auto;
+    width: 250px;
+}
+
+.text {
+    padding-left: 105px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bolder;
+    font-size: 28px;
+}
+
+
+/* .partOfArrow {
+    width: 30px;
+    height: 20px;
+    margin-top: -20px;
+    margin-left: 240px;
+} */
+
+.arrow {
+    margin-bottom: -10px;
+    width: 25px;
+    height: 15px;
+    margin-top: -20px;
+    margin-left: 265px;
+    /* margin-bottom: 100px; */
+}
+
+.tasks {
+    /* margin: 0px; */
+    margin-left: 35px;
+    list-style-type: none;
+    border: 1px solid #c4c4c4;
+    display: block;
+    width: 260px;
+    line-height: 40px;
+    border-radius: 10px;
+    padding-left: 0px;
+}
+
+.form {
+    position: relative;
+    width: 190px;
+}
+
+.userInput {
+    font-family: 'Roboto', sans-serif;
+    outline: none;
+    display: block;
+    width: 190px;
+    line-height: 40px;
+    border-radius: 10px;
+    /* border: 1px solid #c4c4c4; */
+    padding-left: 20px;
+    border-bottom-width: 0px;
+    border-top-width: 0px;
+    border-right-width: 0px;
+    border-left-width: 0px;
+}
+
+.buttonX {
+    position: absolute;
+    top: .9em;
+    margin-left: 210px;
+    border-radius: 71px;
+    width: 20px;
+    height: 20px;
+    font-size: 11px;
+    color: #c4c4c4;
+}
+
+.buttonX.Active {
+    color: #e20c0c;
+}
+
+.list .add {
+    /* margin: 0px; */
+    padding: 0%;
+    border: 1px solid #883AE0;
+    border-radius: 71px;
+    width: 150px;
+    height: 42px;
+    background-color: #883AE0;
+    /* margin-top: 17px; */
+    margin-left: 92px;
+}
+
+.add .textAdd {
+    color: #FFF;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    line-height: 16px;
+    align-items: center;
+    width: 80px;
+    margin: 0px;
+    margin-top: 13px;
+    margin-left: 45px;
+    margin-bottom: 10px;
+}
+
+.insertPlus {
+    position: absolute;
+    width: 42px;
+    border-radius: 71px;
+    background-color: #9953F1;
+    margin-top: -40px;
+    margin-left: -1px;
+}
+
+.plus {
+    color: #FFF;
+}
