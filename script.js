@@ -132,18 +132,18 @@ function ready() {
 let buttonDeleteTaskNextNumber = 2;
 let textTaskNextNumber = 2;
 
-function updateSize(operation) {
-    let currentHeightWithPX = document.styleSheets[0].cssRules[1].style.getPropertyValue("height"),
-        currentHeightNumber = Number(currentHeightWithPX.replace("px", ""));
-    let newHeight;
-    if (operation === "Add") {
-        newHeight = (currentHeightNumber + 45) + "px";
-    } else {
-        newHeight = (currentHeightNumber - 45) + "px";
-    }
-    document.styleSheets[0].cssRules[1].style.height = newHeight;
-    upadteTaskList();
-}
+// function updateSize(operation) {
+    // let currentHeightWithPX = document.styleSheets[0].cssRules[1].style.getPropertyValue("height"),
+    //     currentHeightNumber = Number(currentHeightWithPX.replace("px", ""));
+    // let newHeight;
+    // if (operation === "Add") {
+    //     newHeight = (currentHeightNumber + 45) + "px";
+    // } else {
+    //     newHeight = (currentHeightNumber - 45) + "px";
+    // }
+    // document.styleSheets[0].cssRules[1].style.height = newHeight;
+//     upadteTaskList();
+// }
 
 function newElement() {
     let currentNumberTasks = textTaskNextNumber - 1;
@@ -163,7 +163,7 @@ function newElement() {
 
     buttonDeleteTaskNextNumber += 1;
     textTaskNextNumber += 1;
-    updateSize("Add");
+
 
     allTasks.append(newTask);
 
@@ -180,7 +180,7 @@ function deleteTask(currentDeleteButtonId) {
     } else {
         //Получаем элемент кнопки по ID, для дальнейшей работы
         let currentDeleteButton = document.getElementById(currentDeleteButtonId);
-        updateSize("Delete");
+
         //Так как у нас сам узел располагается выше, достаем его через двух родителей
         allTasks.removeChild(currentDeleteButton.parentElement.parentElement);
     }
