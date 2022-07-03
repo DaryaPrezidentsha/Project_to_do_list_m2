@@ -1,4 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+.bodyClass {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0px;
+}
+
 .list {
     width: 336px;
     background-color: white;
@@ -6,8 +14,6 @@
     border: 1px solid #c4c4c4;
     box-sizing: border-box;
 }
-
-
 
 .yellowInsert {
     height: 28px;
@@ -26,7 +32,7 @@
     margin: 0px;
 }
 
-.fuckThisArrow{
+.divArrow {
     width: auto;
     height: 25px;
     display: flex;
@@ -35,7 +41,8 @@
     margin-right: 20PX;
     margin-top: 5px;
 }
-.fuckThisArrow .arrow {
+
+.divArrow .arrow {
     width: 25px;
     height: 15px;
     margin-right: 0px;
@@ -48,12 +55,15 @@
 }
 
 .tasks {
-    list-style-type: none;
+    display: flex;
     border: 1px solid #c4c4c4;
     line-height: 40px;
     border-radius: 10px;
     padding-left: 20px;
-    margin: 0px;
+    flex-wrap: wrap;
+    align-content: stretch;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 .form {
@@ -63,8 +73,7 @@
 .userInput {
     font-family: 'Roboto', sans-serif;
     outline: none;
-    display: block;
-    width: calc(100%-70px);
+    width: calc(100% - 40px);
     line-height: 40px;
     border-radius: 10px;
     padding-left: 20px;
@@ -76,9 +85,6 @@
 }
 
 .buttonX {
-    position: absolute;
-    right: 10px;
-    top: .9em;
     border-radius: 71px;
     width: 20px;
     height: 20px;
@@ -86,11 +92,7 @@
     color: #c4c4c4;
 }
 
-.buttonX.Active {
-    color: #e20c0c;
-}
-
-.addAll{
+.addAll {
     position: relative;
     align-items: center;
     justify-content: center;
@@ -111,7 +113,7 @@
     justify-content: flex-end;
 }
 
-.addFuck {
+.addText {
     color: #FFF;
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
@@ -123,38 +125,23 @@
     margin-right: 30px;
 }
 
-.add .justForTest{
+.circle {
     width: 41px;
     height: 41px;
     border-radius: 71px;
-    background-color: #e20c0c;
-    /* position: absolute; */
-    display: block;
-    margin-left: -10px;
-    justify-content:flex-start; 
-    align-items: center;
-    
-}
-/* .add .parentForPlus{
-
-    display: block;
-    position: absolute;
-    align-items: center;
     background-color: #9953F1;
-    height: 41px;
-    width: 41px;
-    border-radius: 71px;
-    padding: 0px;
+    position: absolute;
+    left: 0px;
+    align-items: center;
 }
 
-.parentForPlus .plus {
+.plus {
     color: #FFF;
-    justify-content: center;
-    display: flex;
     position: absolute;
-    align-items: center;
-} */
+    left: 40%;
+    top: 30%;
+}
 
-.content{
+.content {
     padding: 10px;
 }

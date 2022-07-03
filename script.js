@@ -1,187 +1,148 @@
 const FORM = document.querySelector('.list');
-const ADD_BUTTON = document.querySelector('.add');
+const ADD_BUTTON = document.querySelector(".add");
+const ADD_CIRCLE = document.querySelector(".circle");
+const SORT_BUTTON = document.querySelector('.arrow');
+const DELETE_BUTTON = document.querySelector('.buttonX');
 
-function upadteTaskList() {
-    let allTask = document.querySelectorAll('.form');
-    for (const task of allTask) {
-        task.draggable = true;
+function sortFirstA(a, b) {
+    if (a < b)
+        return -1
+}
+
+function sortFirstZ(a, b) {
+    if (b < a)
+        return -1
+}
+
+function changeSortPicture(imageName, action) {
+    if (action === "click") {
+        if (imageName === "img/pictures/activeArrowOne.png" || imageName === "img/pictures/passiveArrowOne.png") {
+            SORT_BUTTON.src = "img/pictures/activeArrowTwo.png";
+        } else {
+            SORT_BUTTON.src = "img/pictures/activeArrowOne.png";
+        }
+    }
+
+    if (action === "over") {
+        if (imageName === "img/pictures/passiveArrowOne.png") {
+            SORT_BUTTON.src = "img/pictures/activeArrowOne.png";
+        } else {
+            if (imageName === "img/pictures/passiveArrowTwo.png") {
+                SORT_BUTTON.src = "img/pictures/activeArrowTwo.png";
+            }
+        }
+    }
+    if (action === "out") {
+        if (imageName === "img/pictures/activeArrowOne.png") {
+            SORT_BUTTON.src = "img/pictures/passiveArrowOne.png";
+        } else {
+            if (imageName === "img/pictures/activeArrowTwo.png") {
+                SORT_BUTTON.src = "img/pictures/passiveArrowTwo.png";
+            }
+        }
     }
 }
 
-function mouseInButtons(e) {
-    let className = e.target.className;
-    let image;
-    if (className === "buttonX") {
-        image = document.getElementById(e.target.attributes[1].value);
-        image.src = "activeX.png";
+function sortTasks() {
+    let currentTasksArray = [];
+    let currentTasksElement = document.querySelectorAll(".userInput");
+
+    for (let taskElement of currentTasksElement) {
+        currentTasksArray.push(taskElement.value);
+    }
+
+    let imageName = SORT_BUTTON.getAttribute('src');
+    if (imageName === "img/pictures/activeArrowOne.png" || imageName === "img/pictures/passiveArrowOne.png") {
+        currentTasksArray.sort(sortFirstA);
     } else {
-        if (className === "arrow") {
-            image = document.getElementById(e.target.attributes[1].value);
-            if (image.getAttribute('src') === "passiveArrowOne.png") {
-                image.src = "activeArrowOne.png";
-            } else {
-                if (image.getAttribute('src') === "passiveArrowTwo.png") {
-                    image.src = "activeArrowTwo.png";
-                }
-            }
-        } else {
-            if (className === "textAdd" || className === "plus" || className === "add") {
-                document.styleSheets[0].cssRules[11].style.border = "1px solid #9953F1";
-                document.styleSheets[0].cssRules[11].style['background-color'] = "#9953F1";
-                document.styleSheets[0].cssRules[13].style['background-color'] = "#AA68FE";
-            }
-        }
+        currentTasksArray.sort(sortFirstZ);
+    }
+
+    let i = 0;
+    for (let taskElement of currentTasksElement) {
+        taskElement.value = currentTasksArray[i];
+        ++i;
     }
 }
 
-function mouseOutButtons(e) {
-    let className = e.target.className;
-    let image;
-    if (className === "buttonX") {
-        image = document.getElementById(e.target.attributes[1].value);
-        image.src = "passiveX.png";
-    } else {
-        if (className === "arrow") {
-            image = document.getElementById(e.target.attributes[1].value);
-            if (image.getAttribute('src') === "activeArrowOne.png") {
-                image.src = "passiveArrowOne.png";
-            } else {
-                if (image.getAttribute('src') === "activeArrowTwo.png") {
-                    image.src = "passiveArrowTwo.png";
-                }
-            }
-        } else {
-            if (className === "textAdd" || className === "plus" || className === "add") {
-                document.styleSheets[0].cssRules[11].style.border = "1px solid #883AE0";
-                document.styleSheets[0].cssRules[11].style['background-color'] = "#883AE0";
-                document.styleSheets[0].cssRules[13].style['background-color'] = "#9953F1";
-            }
-        }
-    }
-}
-
-function mouseClick(e) {
-    function sortFirstA(a, b) {
-        if (a < b)
-            return -1
-        if (a > b)
-            return 1
-        return 0
-    }
-
-    function sortFirstZ(a, b) {
-        if (b < a)
-            return -1
-        if (b > a)
-            return 1
-        return 0
-    }
-    let className = e.target.className;
-    let image;
-    if (className === "arrow") {
-        //Для смены изображения сортировки
-        image = document.getElementById(e.target.attributes[1].value);
-        let currentTasksArray = [];
-        let currentTasksElement = document.getElementsByTagName("input");
-
-        for (let taskElement of currentTasksElement) {
-            currentTasksArray.push(taskElement.value);
-        }
-
-        let imageName = image.getAttribute('src');
-        if (imageName === "activeArrowOne.png" || imageName === "passiveArrowOne.png") {
-            currentTasksArray.sort(sortFirstZ);
-            image.src = "activeArrowTwo.png";
-        } else {
-            currentTasksArray.sort(sortFirstA);
-            image.src = "activeArrowOne.png";
-        }
-        let i = 0;
-        for (let taskElement of currentTasksElement) {
-            taskElement.value = currentTasksArray[i];
-            ++i;
-        }
-    } else {
-        if (className === "textAdd" || className === "plus" || className === "add") {
-            newElement();
-        } else {
-            if (className === "buttonX") {
-                deleteTask(e.target.attributes[1].value);
-            }
-        }
-    }
-}
-
-FORM.addEventListener('mouseover', mouseInButtons);
-FORM.addEventListener('click', mouseClick);
-FORM.addEventListener('mouseout', mouseOutButtons);
-FORM.addEventListener('keydown', addIfEnter);
-document.addEventListener("DOMContentLoaded", ready);
-
-function addIfEnter(e) {
-    if (e.key === "Enter") {
-        newElement();
-    }
-}
-
-function ready() {
-    document.getElementById('textTask1').focus();
-}
-
-
-let buttonDeleteTaskNextNumber = 2;
-let textTaskNextNumber = 2;
-
-// function updateSize(operation) {
-    // let currentHeightWithPX = document.styleSheets[0].cssRules[1].style.getPropertyValue("height"),
-    //     currentHeightNumber = Number(currentHeightWithPX.replace("px", ""));
-    // let newHeight;
-    // if (operation === "Add") {
-    //     newHeight = (currentHeightNumber + 45) + "px";
-    // } else {
-    //     newHeight = (currentHeightNumber - 45) + "px";
-    // }
-    // document.styleSheets[0].cssRules[1].style.height = newHeight;
-//     upadteTaskList();
-// }
 
 function newElement() {
-    let currentNumberTasks = textTaskNextNumber - 1;
-    let allTasks = document.getElementById('tasksId');
-    let currentTextField = document.getElementById("textTask" + currentNumberTasks);
-    let localNumber = textTaskNextNumber;
-    while (!Boolean(currentTextField)) {
-        localNumber -= 1;
-        currentTextField = document.getElementById("textTask" + localNumber);
-    }
+    let allTasks = document.querySelector('.tasks');
 
-    let currentTaskName = currentTextField.value;
+    let newTask = document.createElement("input");
+    newTask.type = "text";
+    newTask.placeholder = "";
+    newTask.className = "userInput";
 
-    let newTask = document.createElement("li");
-    newTask.innerHTML += "<form class='form' onsubmit='return false'><input type='text' placeholder='' id= 'textTask" + textTaskNextNumber + "'class='userInput'><img src='passiveX.png' id='buttonDeleteTask" + buttonDeleteTaskNextNumber + "'class='buttonX'></form>";
+    let newDeleteButton = document.createElement("img");
+    newDeleteButton.src = "img/pictures/passiveX.png";
+    newDeleteButton.className = "buttonX";
 
+    //Add listeners for new elements
+    newDeleteButton.addEventListener('mouseover', function() {
+        newDeleteButton.src = "img/pictures/activeX.png";
+    });
 
-    buttonDeleteTaskNextNumber += 1;
-    textTaskNextNumber += 1;
+    newDeleteButton.addEventListener('click', function() {
+        newTask.remove();
+        newDeleteButton.remove();
+    });
 
+    newDeleteButton.addEventListener('mouseout', function() {
+        newDeleteButton.src = "img/pictures/passiveX.png";
+    });
+    //End of new listeners
 
     allTasks.append(newTask);
+    allTasks.append(newDeleteButton);
 
-    let currentTask = document.getElementById('textTask' + (textTaskNextNumber - 1));
-    currentTask.focus();
 }
 
-function deleteTask(currentDeleteButtonId) {
-    let allTasks = document.getElementById('tasksId');
-    let nubmberOfTasks = allTasks.childNodes.length - 2;
-    //Проверяем является ли наш элемент единственным в списке
-    if (nubmberOfTasks === 1) {
-        alert("Может не стоит бросать список дел?)");
-    } else {
-        //Получаем элемент кнопки по ID, для дальнейшей работы
-        let currentDeleteButton = document.getElementById(currentDeleteButtonId);
+//Listeners for add button
+ADD_BUTTON.addEventListener('mouseover', function() {
+    ADD_BUTTON.style.border = "1px solid #9953F1";
+    ADD_BUTTON.style['background-color'] = "#9953F1";
+    ADD_CIRCLE.style['background-color'] = "#AA68FE";
+});
 
-        //Так как у нас сам узел располагается выше, достаем его через двух родителей
-        allTasks.removeChild(currentDeleteButton.parentElement.parentElement);
-    }
-}
+ADD_BUTTON.addEventListener('click', newElement);
+
+ADD_BUTTON.addEventListener('mouseout', function() {
+    ADD_BUTTON.style.border = "1px solid #883AE0";
+    ADD_BUTTON.style['background-color'] = "#883AE0";
+    ADD_CIRCLE.style['background-color'] = "#9953F1";
+});
+//End of Listeners for add button
+
+//Listeners for delete button
+DELETE_BUTTON.addEventListener('mouseover', function() {
+    DELETE_BUTTON.src = "img/pictures/activeX.png";
+});
+
+DELETE_BUTTON.addEventListener('click', function(e) {
+    document.querySelector(".userInput").remove();
+    e.target.remove();
+});
+
+DELETE_BUTTON.addEventListener('mouseout', function() {
+    DELETE_BUTTON.src = "img/pictures/passiveX.png";
+});
+//End of Listeners for delete button
+
+//Listeners for sortButton
+SORT_BUTTON.addEventListener('mouseover', function() {
+    let currentPicture = SORT_BUTTON.getAttribute('src');
+    changeSortPicture(currentPicture, "over");
+});
+
+SORT_BUTTON.addEventListener('click', function() {
+    let currentPicture = SORT_BUTTON.getAttribute('src');
+    changeSortPicture(currentPicture, "click");
+    sortTasks();
+});
+
+SORT_BUTTON.addEventListener('mouseout', function() {
+    let currentPicture = SORT_BUTTON.getAttribute('src');
+    changeSortPicture(currentPicture, "out");
+});
+//End of Listeners for sortButton

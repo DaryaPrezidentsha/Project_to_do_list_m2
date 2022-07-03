@@ -10,42 +10,32 @@
 
 </head>
 
-<body style="
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0px;">
-    <div class="list" id="listId">
+<body class="bodyClass">
+    <div class="list">
         <div class="yellowInsert">
         </div>
         <div class="content">
             <div class="parentForText">
                 <p class="text">To-Do list</p>
             </div>
-            <div class="fuckThisArrow">
-                <img src="passiveArrowTwo.png" id="arrowId" class="arrow">
+            <div class="divArrow">
+                <img src="img/pictures/passiveArrowTwo.png" class="arrow">
             </div>
-            <div class="fuckThisUl">
-            <ul class="tasks" id="tasksId">
-                <li>
-                    <form class="form" onsubmit="return false">
-                        <input type="text" placeholder="" id="textTask1" class="userInput">
-                        <img src="passiveX.png" id="buttonDeleteTask1" class="buttonX">
-                    </form>
-                </li>
+            <div class="tasks">
+                <input type="text" placeholder="" class="userInput">
+                <img src="img/pictures/passiveX.png" class="buttonX">
             </div>
-            </ul>
             <div class="addAll">
-                <button type="submit" id="addButton" class="add">
-                    <div class="justForTest">
-                            
+                <button type="button" class="add">
+                    <div class="circle">
+                        <div class="plus">
+                            +
+                        </div>
                     </div>    
-                    <p class="addFuck">Добавить</p>
+                    <p class="addText">Добавить</p>
                 </button>
             </div>
         </div>
-        
     </div>
     <script src="script.js"></script>
 </body>
